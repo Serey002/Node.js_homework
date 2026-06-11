@@ -1,4 +1,9 @@
 <template>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+    <CardPost v-for="(item, index) in post" :key="index" :name="item.name" :title="item.title" :description="item.description" :photo="item.photo" :position="index"
+    v-on:deleteItem="deleteCard"
+    />
+  </div>
   <div class="p-6 max-w-4xl mx-auto">
     <div class="overflow-hidden rounded-xl border border-slate-200 shadow-sm bg-white">
       <table class="w-full table-fixed border-collapse text-left text-sm text-slate-600">
@@ -40,10 +45,34 @@
       </table>
     </div>
   </div>
+  
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import CardPost from './components/CardPost.vue';
+const post = ref([
+  { name: 'Serey Phem',
+    title: 'This is my post',
+    description: 'Hello ពិភពលោក',
+    photo: 'https://www.sereyhub.online/images/profile.png',
+  },
+
+  { name: 'Serey Phem',
+    title: 'This is my post',
+    description: 'Hello ពិភពលោក',
+    photo: 'https://www.sereyhub.online/images/profile.png'
+  },
+  { name: 'Serey Phem',
+    title: 'This is my post',
+    description: 'Hello ពិភពលោក',
+    photo: 'https://www.sereyhub.online/images/profile.png'
+  }
+
+  ]);
+  function deleteCard(position) {
+    post.value.splice(position, 1);
+  }
 const scoreRecords = [
   {
     student: "him", score: [
@@ -70,6 +99,7 @@ const scoreRecords = [
     ]
   },
 ]
+
 
 </script>
 
